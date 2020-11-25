@@ -212,7 +212,7 @@ class HDFS(FlintrockService):
             """)
 
         # This loop is a band-aid for: https://github.com/nchammas/flintrock/issues/157
-        attempt_limit = 3
+        attempt_limit = 6
         for attempt in range(attempt_limit):
             try:
                 ssh_check_output(
@@ -230,8 +230,7 @@ class HDFS(FlintrockService):
                             )"
                         done
                     """.format(m=shlex.quote(cluster.master_private_host), p=self.name_node_ui_port),
-                    timeout_seconds=90
-                )
+                    timeout_seconds= 240                )
                 break
             except socket.timeout as e:
                 logger.debug(
@@ -402,7 +401,7 @@ class Spark(FlintrockService):
         logger.info("[{h}] Configuring Spark master...".format(h=host))
 
         # This loop is a band-aid for: https://github.com/nchammas/flintrock/issues/129
-        attempt_limit = 3
+        attempt_limit = 6
         for attempt in range(attempt_limit):
             try:
                 ssh_check_output(
@@ -421,7 +420,7 @@ class Spark(FlintrockService):
                             )"
                         done
                     """.format(m=shlex.quote(cluster.master_private_host)),
-                    timeout_seconds=90
+                    timeout_seconds=240
                 )
                 break
             except socket.timeout as e:
