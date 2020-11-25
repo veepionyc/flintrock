@@ -219,11 +219,11 @@ class HDFS(FlintrockService):
                 break
             except socket.timeout as e:
                 logger.debug(
-                    "Timed out waiting for HDFS master to come up.{}"
+                    "Timed out waiting for HDFS master to come upp.{}"
                     .format(" Trying again..." if attempt < attempt_limit - 1 else "")
                 )
         else:
-            raise Exception("Time out waiting for HDFS master to come up.")
+            raise Exception("Time out waiting for HDFS master to come uppp.")
 
     def health_check(self, master_host: str):
         # This info is not helpful as a detailed health check, but it gives us
@@ -400,11 +400,11 @@ class Spark(FlintrockService):
                 break
             except socket.timeout as e:
                 logger.debug(
-                    "Timed out waiting for Spark master to come up.{}"
+                    "Timed out waiting for Spark master to come upp.{}"
                     .format(" Trying again..." if attempt < attempt_limit - 1 else "")
                 )
         else:
-            raise Exception("Timed out waiting for Spark master to come up.")
+            raise Exception("Timed out waiting for Spark master to come uppp.")
 
     def health_check(self, master_host: str):
         spark_master_ui = 'http://{m}:8080/json/'.format(m=master_host)

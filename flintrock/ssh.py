@@ -71,7 +71,7 @@ def get_ssh_client(
     else:
         # It's greater than 1 as a band-aid for this issue:
         # https://github.com/nchammas/flintrock/issues/198
-        tries = 3
+        tries = 6
 
     while tries > 0:
         try:
@@ -81,7 +81,7 @@ def get_ssh_client(
                 hostname=host,
                 key_filename=identity_file,
                 look_for_keys=False,
-                timeout=3)
+                timeout=10)
             if print_status:
                 logger.info("[{h}] SSH online.".format(h=host))
             break
